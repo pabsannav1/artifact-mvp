@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Pedidos Artifact-Centric</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header principal -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-cubes"></i>
+                <h1>Gestor de Pedidos</h1>
+                <span class="subtitle">Artifact-Centric</span>
+            </div>
+
+            <nav class="department-nav">
+                <button class="nav-btn active" data-department="comercial">
+                    <i class="fas fa-handshake"></i>
+                    <span>Comercial</span>
+                </button>
+                <button class="nav-btn" data-department="admin">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Administración</span>
+                </button>
+                <button class="nav-btn" data-department="taller">
+                    <i class="fas fa-tools"></i>
+                    <span>Taller</span>
+                </button>
+            </nav>
+
+            <div class="header-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">0</span>
+                </button>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Usuario Demo</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="app-main">
+        <!-- Panel de notificaciones -->
+        <div class="notification-panel" id="notificationPanel">
+            <div class="notification-header">
+                <h3>Notificaciones</h3>
+                <button class="close-btn" onclick="closeNotifications()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="notification-list" id="notificationList">
+                <!-- Las notificaciones se cargan dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Vistas por departamento -->
+        <div class="department-view active" id="view-comercial">
+            <div class="department-header">
+                <h2><i class="fas fa-handshake"></i> Dashboard Comercial</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="nuevaPropuesta()">
+                        <i class="fas fa-plus"></i> Nueva Propuesta
+                    </button>
+                    <button class="btn btn-secondary" onclick="actualizarDashboard('comercial')">
+                        <i class="fas fa-sync"></i> Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="metrics-grid" id="comercial-metrics">
+                    <!-- Métricas se cargan dinámicamente -->
+                </div>
+
+                <div class="content-grid">
+                    <div class="chart-panel">
+                        <h3>Distribución de Estados</h3>
+                        <canvas id="comercial-chart"></canvas>
+                    </div>
+
+                    <div class="alerts-panel">
+                        <h3>Alertas Activas</h3>
+                        <div id="comercial-alerts" class="alerts-list">
+                            <!-- Alertas se cargan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-panel">
+                    <h3>Pedidos Recientes</h3>
+                    <div class="table-controls">
+                        <select id="comercial-filter" onchange="filtrarPedidos('comercial')">
+                            <option value="">Todos los estados</option>
+                            <option value="propuesto">Propuesto</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="modificado">Modificado</option>
+                            <option value="en_espera">En Espera</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table id="comercial-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Valor</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comercial-table-body">
+                                <!-- Datos se cargan dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="department-view" id="view-admin">
+            <div class="department-header">
+                <h2><i class="fas fa-clipboard-list"></i> Dashboard Administración</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="procesarDocumentacion()">
+                        <i class="fas fa-file-alt"></i> Procesar Documentación
+                    </button>
+                    <button class="btn btn-secondary" onclick="actualizarDashboard('admin')">
+                        <i class="fas fa-sync"></i> Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="metrics-grid" id="admin-metrics">
+                    <!-- Métricas se cargan dinámicamente -->
+                </div>
+
+                <div class="content-grid">
+                    <div class="financial-panel">
+                        <h3>Resumen Financiero</h3>
+                        <div id="admin-financial" class="financial-metrics">
+                            <!-- Datos financieros se cargan dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="chart-panel">
+                        <h3>Estados Administrativos</h3>
+                        <canvas id="admin-chart"></canvas>
+                    </div>
+                </div>
+
+                <div class="alerts-panel">
+                    <h3>Alertas Administrativas</h3>
+                    <div id="admin-alerts" class="alerts-list">
+                        <!-- Alertas se cargan dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="table-panel">
+                    <h3>Pedidos en Gestión</h3>
+                    <div class="table-container">
+                        <table id="admin-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Estado Admin</th>
+                                    <th>Valor</th>
+                                    <th>Fecha Entrega</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-table-body">
+                                <!-- Datos se cargan dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="department-view" id="view-taller">
+            <div class="department-header">
+                <h2><i class="fas fa-tools"></i> Dashboard Taller</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="iniciarFabricacion()">
+                        <i class="fas fa-play"></i> Iniciar Fabricación
+                    </button>
+                    <button class="btn btn-warning" onclick="reportarIncidencia()">
+                        <i class="fas fa-exclamation-triangle"></i> Reportar Incidencia
+                    </button>
+                    <button class="btn btn-secondary" onclick="actualizarDashboard('taller')">
+                        <i class="fas fa-sync"></i> Actualizar
+                    </button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="metrics-grid" id="taller-metrics">
+                    <!-- Métricas se cargan dinámicamente -->
+                </div>
+
+                <div class="content-grid">
+                    <div class="capacity-panel">
+                        <h3>Carga de Trabajo</h3>
+                        <div id="taller-capacity" class="capacity-indicators">
+                            <!-- Indicadores de capacidad se cargan dinámicamente -->
+                        </div>
+                    </div>
+
+                    <div class="efficiency-panel">
+                        <h3>Eficiencia</h3>
+                        <div id="taller-efficiency" class="efficiency-metrics">
+                            <!-- Métricas de eficiencia se cargan dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alerts-panel">
+                    <h3>Alertas del Taller</h3>
+                    <div id="taller-alerts" class="alerts-list">
+                        <!-- Alertas se cargan dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="table-panel">
+                    <h3>Órdenes de Trabajo</h3>
+                    <div class="table-container">
+                        <table id="taller-table" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Pedido</th>
+                                    <th>Producto</th>
+                                    <th>Estado Taller</th>
+                                    <th>Responsable</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="taller-table-body">
+                                <!-- Datos se cargan dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal para detalles de pedido -->
+    <div class="modal" id="pedidoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalles del Pedido</h3>
+                <button class="close-btn" onclick="cerrarModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido se carga dinámicamente -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="cerrarModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para formularios -->
+    <div class="modal" id="formModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="form-modal-title">Formulario</h3>
+                <button class="close-btn" onclick="cerrarModalFormulario()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="form-modal-body">
+                <!-- Formulario se carga dinámicamente -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="enviarFormulario()">Guardar</button>
+                <button class="btn btn-secondary" onclick="cerrarModalFormulario()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

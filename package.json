@@ -1,0 +1,22 @@
+{
+  "name": "gestor-pedidos-artifact-centric",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de pedidos basado en artefactos con ciclos de vida por departamento",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["artifact-centric", "workflow", "state-machine", "pedidos"],
+  "author": "",
+  "license": "MIT"
+}

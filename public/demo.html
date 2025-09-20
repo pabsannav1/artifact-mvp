@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Gestor de Pedidos Artifact-Centric</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-banner {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-banner p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .concept-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .concept-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .concept-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .flow-diagram {
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+        }
+
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .flow-step {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            z-index: 1;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .flow-step h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .flow-step p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--background-color);
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-icon {
+            color: var(--success-color);
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .feature-content h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-content p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .demo-banner h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-step::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner demo -->
+    <div class="demo-banner">
+        <h1><i class="fas fa-cubes"></i> Gestor de Pedidos Artifact-Centric</h1>
+        <p>
+            Una nueva forma de gestionar procesos complejos donde cada departamento mantiene su propio ciclo de vida
+            del mismo artefacto central, eliminando la rigidez de los flujos tradicionales.
+        </p>
+    </div>
+
+    <div class="app-main">
+        <!-- Conceptos principales -->
+        <section>
+            <h2 class="text-center mb-4" style="font-size: 2rem; color: var(--text-primary);">Conceptos Revolucionarios</h2>
+
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Artefacto Central</h3>
+                    <p>
+                        El <strong>Pedido</strong> es el concepto unificador que todos los departamentos comprenden,
+                        pero cada uno lo ve desde su propia perspectiva y necesidades operativas.
+                    </p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3>Estados Independientes</h3>
+                    <p>
+                        Cada departamento mantiene su propio estado sin depender estrictamente de otros,
+                        permitiendo flexibilidad y gestión natural de casos extremos.
+                    </p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Vistas Contextuales</h3>
+                    <p>
+                        Cada actor ve exactamente los datos necesarios para su operación:
+                        ni más información de la cuenta, ni menos de la requerida.
+                    </p>
+                </div>
+
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                    <h3>Eventos de Coordinación</h3>
+                    <p>
+                        Los cambios en un departamento pueden activar automáticamente acciones en otros,
+                        pero sin acoplamiento directo entre sistemas.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flujo del sistema -->
+        <section>
+            <div class="flow-diagram">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">
+                    <i class="fas fa-project-diagram"></i> Flujo Natural del Sistema
+                </h2>
+
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <h4><i class="fas fa-handshake"></i> Comercial</h4>
+                        <p>Gestiona propuestas, confirmaciones y modificaciones del cliente</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <h4><i class="fas fa-clipboard-check"></i> Administración</h4>
+                        <p>Verifica, documenta, factura y gestiona cobros</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <h4><i class="fas fa-tools"></i> Taller</h4>
+                        <p>Fabrica, controla calidad y entrega productos</p>
+                    </div>
+
+                    <div class="flow-step">
+                        <h4><i class="fas fa-check-circle"></i> Completado</h4>
+                        <p>Pedido finalizado con seguimiento completo</p>
+                    </div>
+                </div>
+
+                <p style="text-align: center; margin-top: 2rem; color: var(--text-secondary);">
+                    <strong>Lo revolucionario:</strong> Cada departamento puede avanzar independientemente,
+                    gestionar modificaciones parciales y manejar casos extremos de forma natural.
+                </p>
+            </div>
+        </section>
+
+        <!-- Características -->
+        <section>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">
+                <i class="fas fa-star"></i> Características Destacadas
+            </h2>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Modificaciones Parciales</h4>
+                        <p>Cambios que solo afectan a departamentos específicos sin pasar por verificación completa</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Estados Paralelos</h4>
+                        <p>Admin puede facturar mientras taller gestiona incidencias, sin bloqueos</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Formularios Dinámicos</h4>
+                        <p>Se adaptan automáticamente al estado actual y departamento</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Dashboards Específicos</h4>
+                        <p>Métricas relevantes para cada actor: conversión, facturación, eficiencia</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Vista Cross-Departamental</h4>
+                        <p>Acceso completo al artefacto desde cualquier departamento para contexto</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <i class="fas fa-check-circle feature-icon"></i>
+                    <div class="feature-content">
+                        <h4>Coordinación Automática</h4>
+                        <p>Eventos inteligentes que sincronizan departamentos sin dependencias rígidas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section>
+            <div class="cta-section">
+                <h2 style="color: var(--text-primary); margin-bottom: 1rem;">
+                    <i class="fas fa-rocket"></i> Explora el Sistema en Acción
+                </h2>
+                <p style="color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">
+                    Experimenta cómo el enfoque artifact-centric revoluciona la gestión de procesos complejos
+                    manteniendo la simplicidad y flexibilidad para casos reales.
+                </p>
+
+                <div class="cta-buttons">
+                    <a href="/" class="btn btn-primary" style="text-decoration: none;">
+                        <i class="fas fa-play"></i> Probar Sistema Completo
+                    </a>
+                    <a href="/api/docs" class="btn btn-secondary" style="text-decoration: none;">
+                        <i class="fas fa-book"></i> Ver Documentación API
+                    </a>
+                    <a href="/health" class="btn btn-secondary" style="text-decoration: none;">
+                        <i class="fas fa-heartbeat"></i> Estado del Sistema
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información técnica -->
+        <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-code"></i> Tecnologías
+                    </h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.8;">
+                        <li>Node.js + Express</li>
+                        <li>JavaScript ES Modules</li>
+                        <li>Chart.js para visualizaciones</li>
+                        <li>CSS Grid + Flexbox</li>
+                        <li>Font Awesome icons</li>
+                        <li>API REST + JSON</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-lightbulb"></i> Principios
+                    </h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.8;">
+                        <li>El framework sirve al problema</li>
+                        <li>Lo explicable es implementable</li>
+                        <li>Cada actor tiene todos los datos necesarios</li>
+                        <li>Abierto a automatización, modelado para humanos</li>
+                        <li>Casos extremos como parte natural del flujo</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">
+                        <i class="fas fa-cogs"></i> Características
+                    </h3>
+                    <ul style="color: var(--text-secondary); line-height: 1.8;">
+                        <li>Estados independientes por departamento</li>
+                        <li>Formularios dinámicos contextuales</li>
+                        <li>Sistema de eventos de coordinación</li>
+                        <li>Dashboards específicos por actor</li>
+                        <li>Modificaciones parciales inteligentes</li>
+                        <li>Vista completa cross-departamental</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; color: var(--text-secondary);">
+            <p>
+                <strong>Gestor de Pedidos Artifact-Centric</strong> -
+                Demostrando una nueva forma de pensar sobre la gestión de procesos complejos
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">
+                "El sistema se adapta a las personas, no las personas al sistema"
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
