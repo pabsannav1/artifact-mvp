@@ -16,8 +16,11 @@ export class DatabaseConnection {
   async connect() {
     try {
       // Configuración de conexión con Neon
+      // Neon puede crear la variable como DATABASE_DATABASE_URL
+      const databaseUrl = process.env.DATABASE_URL || process.env.DATABASE_DATABASE_URL;
+
       const config = {
-        connectionString: process.env.DATABASE_URL,
+        connectionString: databaseUrl,
         ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
         max: 20, // máximo de conexiones en el pool
         idleTimeoutMillis: 30000, // cerrar conexiones inactivas después de 30s
@@ -25,7 +28,7 @@ export class DatabaseConnection {
       };
 
       // Configuración alternativa si se usan variables separadas
-      if (!process.env.DATABASE_URL && process.env.DB_HOST) {
+      if (!databaseUrl && process.env.DB_HOST) {
         config.host = process.env.DB_HOST;
         config.port = parseInt(process.env.DB_PORT) || 5432;
         config.database = process.env.DB_NAME;
