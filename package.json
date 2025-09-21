@@ -9,6 +9,7 @@
     "dev": "node --watch src/index.js",
     "build": "echo 'Build completed'",
     "vercel-build": "echo 'Vercel build completed'",
+    "seed:prod": "node scripts/seed-production.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
